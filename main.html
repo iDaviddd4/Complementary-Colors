@@ -1,0 +1,149 @@
+<HTML>
+    <HEAD>
+        <TITLE> Complementary Colors </TITLE>
+        <link rel="stylesheet" href="style.css">
+    </HEAD>
+    <BODY>
+        <div class="input-box" id="input-box">
+            <div id="range-holder">
+                <input type="range" min="0" max="255" id="red-color" class="sliders" onchange=colorChange()> 
+                <input type="range" min="0" max="255" id="green-color" class="sliders" onchange="colorChange()">
+                <input type="range" min="0" max="255" id="blue-color" class="sliders" onchange="colorChange()">
+            </div>
+                <!-- <input type="number" min="2" max="128" step="1" id="steps" placeholder="Number of steps">  -->
+            <p id="RGB-result" class="RGB-result"> RGB color code will be shown here </p>
+        </div>
+
+        <div class="input-box" id="input-box2">
+
+            <div id="color1" class="color-results"><p class="compColorsCode" id="RGB1"></p></div>
+            <div id="colorOriginal" class="color-results"><p class="compColorsCode" id="RGBOriginal"></p></div>
+            <div id="color2" class="color-results"><p class="compColorsCode" id="RGB2"></p></div>
+            <div id="color3" class="color-results"><p class="compColorsCode" id="RGB3"></p></div>
+            <div id="color4" class="color-results"><p class="compColorsCode" id="RGB4"></p></div>
+            
+        </div>
+
+        <div class="comparision">
+
+        </div>
+
+        <script>
+
+            var red;
+            var green;
+            var blue;
+           
+            function colorChange(){
+
+                red = document.getElementById("red-color").value;
+                green = document.getElementById("green-color").value;
+                blue = document.getElementById("blue-color").value;
+
+                document.getElementById("RGB-result").innerHTML = "RGB (" + red + ", " + green + ", " + blue + ")";
+                document.getElementById("input-box").style.backgroundColor = "RGB(" + red + ", " + green + ", " + blue + ")";
+
+                complementaryColor();
+            }
+
+            function complementaryColor() {
+
+                var compRed1;
+                var compGreen1;
+                var compBlue1;
+
+                var compRed2;
+                var compGreen2;
+                var compBlue2;
+
+                var compRed3;
+                var compGreen3;
+                var compBlue3;
+
+                var compRed4;
+                var compGreen4;
+                var compBlue4;
+
+                var step1 = 25;
+                var step2 = 35;
+                var step3 = 55;
+                var step4 = 85;
+                
+                compRed1 = parseInt(red) - parseInt(step1);
+                    if(compRed1 >=255){
+                        compRed1 = 255;
+                    }else if(compRed1 <=0){compRed1 = 0}
+                compGreen1 = parseInt(green) - parseInt(step1);
+                    if(compGreen1 >=255){
+                        compGreen1 = 255;
+                    }else if(compGreen1 <=0){compGreen1 = 0}
+                compBlue1 = parseInt(blue) - parseInt(step1);
+                    if(compBlue1 >=255){
+                        compBlue1 = 255;
+                    }else if(compBlue1 <=0){compBlue1 = 0}
+
+                compRed2 = parseInt(red) + parseInt(step2);
+                    if(compRed2 >=255){
+                        compRed2 = 255;
+                    }
+                compGreen2 = parseInt(green) + parseInt(step2);
+                    if(compGreen2 >=255){
+                        compGreen2 = 255;
+                    }
+                compBlue2 = parseInt(blue) + parseInt(step2);
+                    if(compBlue2 >=255){
+                        compBlue2 = 255;
+                    }
+
+                compRed3 = parseInt(red) + parseInt(step3);
+                    if(compRed3 >=255){
+                        compRed3 = 255;
+                    }
+                compGreen3 = parseInt(green) + parseInt(step3);
+                    if(compGreen3 >=255){
+                        compGreen3 = 255;
+                    }
+                compBlue3 = parseInt(blue) + parseInt(step3);
+                    if(compBlue3 >=255){
+                        compBlue3 = 255;
+                    }
+                
+                compRed4 = parseInt(red) + parseInt(step4);
+                    if(compRed4 >=255){
+                        compRed4 = 255;
+                    }
+                compGreen4 = parseInt(green) + parseInt(step4);
+                    if(compGreen4 >=255){
+                        compGreen4 = 255;
+                    }
+                compBlue4 = parseInt(blue) + parseInt(step4);
+                    if(compBlue4 >=255){
+                        compBlue4 = 255;
+                    }
+                
+                if(compRed4 == 255 && compGreen4 == 255){
+                    console.log("Red and Green");
+                }else if(compRed4 ==255 && compBlue4 == 255){
+                    console.log("Red and Blue");
+                }else if(compGreen4 == 255 && compBlue4 == 255){
+                    console.log("Green and Blue");
+                }
+
+                
+                
+                document.getElementById("color1").style.backgroundColor = "RGB(" + compRed1 + ", " + compGreen1 + ", " + compBlue1 + ")";
+                document.getElementById("color2").style.backgroundColor = "RGB(" + compRed2 + ", " + compGreen2 + ", " + compBlue2 + ")";
+                document.getElementById("color3").style.backgroundColor = "RGB(" + compRed3 + ", " + compGreen3 + ", " + compBlue3 + ")";
+                document.getElementById("color4").style.backgroundColor = "RGB(" + compRed4 + ", " + compGreen4 + ", " + compBlue4 + ")";
+                document.getElementById("RGB1").innerHTML = "RGB(" + compRed1 + ", " + compGreen1 + ", " + compBlue1 + ")";
+                document.getElementById("RGB2").innerHTML = "RGB(" + compRed2 + ", " + compGreen2 + ", " + compBlue2 + ")";
+                document.getElementById("RGB3").innerHTML = "RGB(" + compRed3 + ", " + compGreen3 + ", " + compBlue3 + ")";
+                document.getElementById("RGB4").innerHTML = "RGB(" + compRed4 + ", " + compGreen4 + ", " + compBlue4 + ")";
+                
+                document.getElementById("RGBOriginal").innerHTML = "RGB (" + red + ", " + green + ", " + blue + ")";
+                document.getElementById("colorOriginal").style.backgroundColor = "RGB(" + red + ", " + green + ", " + blue + ")";
+
+            }
+        </script>
+    </BODY>
+</HTML>
